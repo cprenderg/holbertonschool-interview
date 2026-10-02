@@ -24,10 +24,11 @@ def pascal_triangle(n):
         return lines
     lines = lines + pascal_triangle(n - 1)
     current_line = []
-    for i in range(1, n):
-        if i == 1:
+    for i in range(0, n - 1):
+        if i == 0:
             current_line.append(1)
-        current_line.append(lines[n - 2][i - 1] + lines[n - 2][i - 2])
+        else:
+            current_line.append(lines[n - 2][i] + lines[n - 2][i - 1])
     current_line.append(1)
     lines.append(current_line)
     return lines
