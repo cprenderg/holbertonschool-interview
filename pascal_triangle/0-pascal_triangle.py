@@ -1,6 +1,18 @@
 #!/usr/bin/python3
 
+
+"""
+This module returns a list of lists of numbers
+that correspond to each layer in Pascal's Triangle
+"""
+
+
 def pascal_triangle(n):
+    """
+    Recursive function that returns a list of lists of numbers
+    that correspond to each layer in Pascal's Triangle up to n
+    """
+
     lines = []
     if n <= 0:
         return lines
