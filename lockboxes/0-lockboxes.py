@@ -16,9 +16,9 @@ def canUnlockAll(boxes):
         for key in keys:
             if key < len(boxes):
                 for new_key in boxes[key]:
-                    if new_key not in keys:
-                        if new_key not in used_keys:
-                            keys.append(new_key)
+                    if new_key < len(boxes) and (new_key not in keys
+                                                 and new_key not in used_keys):
+                        keys.append(new_key)
                 used_keys.append(keys.pop(keys.index(key)))
 
     if len(used_keys) == len(boxes):
