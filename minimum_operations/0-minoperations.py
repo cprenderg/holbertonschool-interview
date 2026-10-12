@@ -8,7 +8,7 @@ def minOperations(n):
 
     """ Function works under condition that you can only Copy All and Paste """
 
-    if n <= 0:
+    if n <= 1:
         return 0
 
     if n == 2:
@@ -21,16 +21,15 @@ def minOperations(n):
         ops = minOperations(n/2)
         ops += 2
     else:
-        i = n - 1
-        while i != 0:
+        i = n // 2  # n is odd, so can't be divided by evens
+        while i > 0:
             if n % i == 0:
-                k = n / i
                 break
-            i -= 1
+            i -= 2
         if i > 1:
             ops = minOperations(i)
-            ops += int(k)
+            ops += n // i
         else:
             return n
 
-    return ops
+    return int(ops)
