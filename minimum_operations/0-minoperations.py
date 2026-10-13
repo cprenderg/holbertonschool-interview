@@ -21,7 +21,7 @@ def minOperations(n):
         ops = minOperations(n/2)
         ops += 2
     else:
-        i = n // 2 + 1  # n is odd, so can't be divided by evens
+        i = n / 2 - 0.5  # n is odd, so can't be divided by evens
         while i > 0:
             if n % i == 0:
                 break
