@@ -46,7 +46,10 @@ def main():
             # if re.fullmatch(input_format, line.strip()):
             # Add file size
             file_size = stripped_line.split(" ")[-1]
-            total_size += int(file_size)
+            try:
+                total_size += int(file_size)
+            except ValueError:
+                pass
 
             # Add status code
             status_code = stripped_line.split(" ")[-2]
