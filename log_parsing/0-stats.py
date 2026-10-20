@@ -20,6 +20,10 @@ def print_stats(total_size, status_codes, status_code_count):
         print(f"{code}: {status_code_count[index]}")
 
 
+"""
+Main part of module that loops
+"""
+
 # must \ periods and square brackets
 # ? means the group doesn't have to be there
 # ^ means it must match the start of a line
