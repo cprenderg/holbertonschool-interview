@@ -56,11 +56,10 @@ def main():
                             status_code_count[index] += 1
                     except ValueError:
                         pass
+                files_read += 1
 
-            files_read += 1
-
-            if files_read % 10 == 0:
-                print_stats(total_size, status_codes, status_code_count)
+                if files_read % 10 == 0:
+                    print_stats(total_size, status_codes, status_code_count)
     except KeyboardInterrupt:
         print_stats(total_size, status_codes, status_code_count)
     if files_read % 10 != 0 or files_read == 0:
