@@ -45,7 +45,10 @@ def main():
             # strip removes leading and trailing spaces
             # if re.fullmatch(input_format, line.strip()):
             # Add file size
-            file_size = stripped_line.split(" ")[-1]
+            try:
+                file_size = stripped_line.split(" ")[-1]
+            except IndexError:
+                pass
             try:
                 total_size += int(file_size)
             except ValueError:
