@@ -55,14 +55,17 @@ def main():
                 pass
 
             # Add status code
-            status_code = stripped_line.split(" ")[-2]
-            for index, code in enumerate(status_codes):
-                try:
-                    if int(status_code) == code:
-                        status_code_count[index] += 1
-                except ValueError:
-                    pass
-            files_read += 1
+            try:            
+                status_code = stripped_line.split(" ")[-2]
+                for index, code in enumerate(status_codes):
+                    try:
+                        if int(status_code) == code:
+                            status_code_count[index] += 1
+                    except ValueError:
+                        pass
+                files_read += 1
+            except IndexError:
+                pass
 
             if files_read % 10 == 0:
                 print_stats(total_size, status_codes, status_code_count)
