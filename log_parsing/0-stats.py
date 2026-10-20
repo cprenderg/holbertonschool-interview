@@ -14,7 +14,7 @@ def print_stats(total_size, status_codes, status_code_count):
     Function that prints saved stats
     """
 
-    print(f"File size {total_size}")
+    print(f"File size: {total_size}")
 
     for index, code in enumerate(status_codes):
         if status_code_count[index] != 0:
