@@ -17,7 +17,8 @@ def print_stats(total_size, status_codes, status_code_count):
     print(f"File size {total_size}")
 
     for index, code in enumerate(status_codes):
-        print(f"{code}: {status_code_count[index]}")
+        if status_code_count[index] != 0:
+            print(f"{code}: {status_code_count[index]}")
 
 
 def main():
