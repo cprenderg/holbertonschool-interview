@@ -63,7 +63,7 @@ def main():
                 print_stats(total_size, status_codes, status_code_count)
     except KeyboardInterrupt:
         print_stats(total_size, status_codes, status_code_count)
-    if files_read % 10 != 0:
+    if files_read % 10 != 0 or files_read == 0:
         print_stats(total_size, status_codes, status_code_count)
 
 
