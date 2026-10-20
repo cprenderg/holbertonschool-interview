@@ -43,23 +43,23 @@ def main():
 
             stripped_line = line.strip()
             # strip removes leading and trailing spaces
-            if re.fullmatch(input_format, line.strip()):
-                # Add file size
-                file_size = stripped_line.split(" ")[-1]
-                total_size += int(file_size)
+            # if re.fullmatch(input_format, line.strip()):
+            # Add file size
+            file_size = stripped_line.split(" ")[-1]
+            total_size += int(file_size)
 
-                # Add status code
-                status_code = stripped_line.split(" ")[-2]
-                for index, code in enumerate(status_codes):
-                    try:
-                        if int(status_code) == code:
-                            status_code_count[index] += 1
-                    except ValueError:
-                        pass
-                files_read += 1
+            # Add status code
+            status_code = stripped_line.split(" ")[-2]
+            for index, code in enumerate(status_codes):
+                try:
+                    if int(status_code) == code:
+                        status_code_count[index] += 1
+                except ValueError:
+                    pass
+            files_read += 1
 
-                if files_read % 10 == 0:
-                    print_stats(total_size, status_codes, status_code_count)
+            if files_read % 10 == 0:
+                print_stats(total_size, status_codes, status_code_count)
     except KeyboardInterrupt:
         print_stats(total_size, status_codes, status_code_count)
     if files_read % 10 != 0 or files_read == 0:
