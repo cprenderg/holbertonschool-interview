@@ -55,7 +55,7 @@ def main():
                 pass
 
             # Add status code
-            try:            
+            try:
                 status_code = stripped_line.split(" ")[-2]
                 for index, code in enumerate(status_codes):
                     try:
