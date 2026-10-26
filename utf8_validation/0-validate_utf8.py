@@ -10,6 +10,7 @@ def validUTF8(data: list[int]):
     Function the loops through a data set
     """
     for number in data:
-        if number > 255:
+        string = (chr(number).encode('utf-8'))
+        if len(string) > 1 or len(string) == 0:
             return False
     return True
