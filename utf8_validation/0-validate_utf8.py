@@ -32,7 +32,6 @@ def validUTF8(data: list[int]):
     for number in data:
         if number > 255:
             number = number % 256
-
         if bytes_left == 0:
             if number >= CONTINUATION_BYTE_MIN and number < TWO_STARTER_MIN:
                 return False
@@ -48,6 +47,6 @@ def validUTF8(data: list[int]):
             else:
                 bytes_left -= 1
 
-        if bytes_left:
-            return False
-        return True
+    if bytes_left:
+        return False
+    return True
