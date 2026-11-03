@@ -17,7 +17,6 @@ def create_board(n: int):
         row = []
         for y in range(n):
             row.append([x, y])
-            y += 1
         board.append(row)
         x += 1
     return board
@@ -61,25 +60,25 @@ def is_safe(queens, square):
     return True
 
 
-def check_row(queens, board, n):
+def check_row(queens, board, n, row_num):
     """
     recursive function that returns a solution
     """
 
-    if len(queens) == n:
-        return queens
-    for row in board:
-        for square in row:
-            if is_safe(queens, square):
-                temp = queens.copy()
-                temp.append(square)
-                temp = check_row(temp, board, n)
-                if not temp:
-                    pass
-                else:
-                    return temp
+    solutions = []
 
-    return []
+    if len(queens) == n:
+        return [queens]
+
+    for square in board[row_num]:
+        if is_safe(queens, square):
+            temp = queens.copy()
+            temp.append(square)
+            temp = check_row(temp, board, n, row_num + 1)
+
+            solutions.extend(temp)
+
+    return solutions
 
 
 def main(args):
@@ -103,9 +102,9 @@ def main(args):
 
     for square in board[0]:
         queens.append(square)
-        queens = check_row(queens, board, n)
+        queens = check_row(queens, board, n, 1)
         if queens:
-            solutions.append(queens)
+            solutions.extend(queens)
         queens = []
 
     for solution in solutions:
