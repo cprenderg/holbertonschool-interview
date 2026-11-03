@@ -1,11 +1,15 @@
 #!/usr/bin/python3
+"""
+takes user input to check the N queens puzzle
+"""
 
-# class Queen:
-#     def __init__(self)
+import sys
+
 
 def create_board(n: int):
-    # check if int
-    # check greater than 4
+    """
+    creates the board of size n
+    """
 
     board = []
     x = 0
@@ -18,108 +22,94 @@ def create_board(n: int):
         x += 1
     return board
 
-def can_attack(position, defender) -> bool:
-    if position == None:
+
+def can_attack(queen, defender) -> bool:
+    """
+    checks if a square can be attacked by a queen
+    """
+
+    if queen is None:
         return True
     # horiztonal
-    if position[0] == defender[0]:
+    if queen[0] == defender[0]:
         return True
     # vertical
-    if position[1] == defender[1]:
+    if queen[1] == defender[1]:
         return True
     # diagonal down right
-    if position[0] - defender[0] == position[1] - defender[1]:
+    if queen[0] - defender[0] == queen[1] - defender[1]:
         return True
     # diagonal up right
-    if position[0] - defender[0] == defender[1] - position[1]:
+    if queen[0] - defender[0] == defender[1] - queen[1]:
         return True
     # diagonal down left
-    if defender[0] - position[0] == position[1] - defender[1]:
+    if defender[0] - queen[0] == queen[1] - defender[1]:
         return True
     # diagonal up left
-    if position[0] - defender[0] == position[1] - defender[1]:
+    if queen[0] - defender[0] == queen[1] - defender[1]:
         return True
 
-def find_next_queen(queens, board, square):
-    if not queens:
-        return square
-    for row in board:
-        for square1 in row:
-            for queen in queens:
-                if can_attack(queen, square1):
-                    break
-                if queens.index(queen) == len(queens) - 1:
-                    return square1
-    return None
-def solve_square(queens, square, board, n):
+
+def is_safe(queens, square):
+    """
+    checks if a square is safe
+    """
+
+    for queen in queens:
+        if can_attack(queen, square):
+            return False
+    return True
+
+
+def check_row(queens, board, n):
+    """
+    recursive function that returns a solution
+    """
+
+    if len(queens) == n:
+        return queens
     for row in board:
         for square in row:
-            next_queen = find_next_queen(queens, board, square)
-            if next_queen != None:
-                queens.append(next_queen)
-            if len(queens) == n:
-                return queens
-    return None
+            if is_safe(queens, square):
+                temp = queens.copy()
+                temp.append(square)
+                temp = check_row(temp, board, n)
+                if not temp:
+                    pass
+                else:
+                    return temp
+
+    return []
 
 
+def main(args):
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+    if not isinstance(int(sys.argv[1]), int):
+        print("N must be a number")
+        sys.exit(1)
 
-def check_row(queens, row, board, n):
-    for square in row:
-        queens = solve_square(queens, square, board, n)
-        if queens != None:
-            return queens
-    return None
+    if int(sys.argv[1]) < 4:
+        print("N must be at least 4")
+        sys.exit(1)
 
-n = 4
-board = create_board(n)
-for row in board:
-    print(row)
+    n = int(sys.argv[1])
+    board = create_board(n)
 
+    solutions = []
+    queens = []
 
-solutions = []
-queens = []
+    for square in board[0]:
+        queens.append(square)
+        queens = check_row(queens, board, n)
+        if queens:
+            solutions.append(queens)
+        queens = []
 
-
-for row in board:
-    queens = check_row(queens, row, board, n)
-    if queens != None:
-        solutions.append(queens)
-
-
-for solution in solutions:
-    print(solution)
-
-
-# for square in board[0]:
-#     queens = []
-#     print(f"appending {square} to {queens}")
-#     queens.append(square)
-
-#     for square1 in board[1]:
-#         potential = solve_square(queens, square1, board, n)
-#         if potential is not None:
-#             solutions.append(potential)
-#             break
-
-# NEED TO RECURSIVELY CALL ABOVE
-# IF IT THE SOLUTION IS NOT THE NEXT QUEEN CHECK THE NEXT SQUARE IN ROW
-# SOMETHING LIKE 
+    for solution in solutions:
+        print(solution)
 
 
-
-        
-# def r_solve_square(queens, square, board, n):
-#     if square == [n - 1, n - 1]:
-#         return None
-#     if len(queens) == n:
-#         return queens
-#     if not queens:
-#         return square
-#     next_queen = find_next_queen(queens, board, square)
-#     if not next_queen:
-#         return None
-#     while queens != None or len(queens) == n:
-#         queens = r_solve_square(queens, square, board, n)
-#         if not queens:
-#             return None
-#     return queens
+if __name__ == "__main__":
+    main(sys.argv[1:])
