@@ -62,7 +62,15 @@ def solve_square(queens, square, board, n):
     return None
 
 
-n = 6
+
+def check_row(queens, row, board, n):
+    for square in row:
+        queens = solve_square(queens, square, board, n)
+        if queens != None:
+            return queens
+    return None
+
+n = 4
 board = create_board(n)
 for row in board:
     print(row)
@@ -72,24 +80,46 @@ solutions = []
 queens = []
 
 
+for row in board:
+    queens = check_row(queens, row, board, n)
+    if queens != None:
+        solutions.append(queens)
 
 
-for square in board[0]:
-    queens = []
-    print(f"appending {square} to {queens}")
-    queens.append(square)
+for solution in solutions:
+    print(solution)
 
-    for square1 in board[1]:
-        potential = solve_square(queens, square1, board, n)
-        if potential is not None:
-            solutions.append(potential)
-            break
+
+# for square in board[0]:
+#     queens = []
+#     print(f"appending {square} to {queens}")
+#     queens.append(square)
+
+#     for square1 in board[1]:
+#         potential = solve_square(queens, square1, board, n)
+#         if potential is not None:
+#             solutions.append(potential)
+#             break
 
 # NEED TO RECURSIVELY CALL ABOVE
 # IF IT THE SOLUTION IS NOT THE NEXT QUEEN CHECK THE NEXT SQUARE IN ROW
 # SOMETHING LIKE 
 
 
-for solution in solutions:
-    print(solution)
+
         
+# def r_solve_square(queens, square, board, n):
+#     if square == [n - 1, n - 1]:
+#         return None
+#     if len(queens) == n:
+#         return queens
+#     if not queens:
+#         return square
+#     next_queen = find_next_queen(queens, board, square)
+#     if not next_queen:
+#         return None
+#     while queens != None or len(queens) == n:
+#         queens = r_solve_square(queens, square, board, n)
+#         if not queens:
+#             return None
+#     return queens
