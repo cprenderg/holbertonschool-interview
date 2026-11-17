@@ -1,6 +1,14 @@
 #!/usr/bin/python3
 
+""" Module finds the fewest number of coins needed
+to make total """
+
+
 def makeChange(coins, total):
+
+    """ Module finds the fewest number of coins needed
+    to make total """
+
     if total <= 0:
         return 0
 
