@@ -15,15 +15,15 @@ def island_perimeter(grid):
     height = len(grid) - 1
     width = len(grid[row]) - 1
 
-    while row < height:
+    while row <= height:
         column = 0
-        while column < width:
+        while column <= width:
             if grid[row][column] == 1:
                 # left
-                if row == 0 or grid[row][column - 1] == 0:
+                if column == 0 or grid[row][column - 1] == 0:
                     perimeter += 1
                 # right
-                if row == width or grid[row][column + 1] == 0:
+                if column == width or grid[row][column + 1] == 0:
                     perimeter += 1
                 # up
                 if row == 0 or grid[row - 1][column] == 0:
