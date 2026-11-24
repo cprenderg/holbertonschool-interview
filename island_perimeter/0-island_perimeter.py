@@ -17,7 +17,7 @@ def island_perimeter(grid):
 
     while row < width:
         column = 0
-        while column <= height:
+        while column < height:
             if grid[row][column] == 1:
                 # left
                 if row == 0 or grid[row][column - 1] == 0:
