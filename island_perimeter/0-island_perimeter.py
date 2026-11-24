@@ -12,12 +12,12 @@ def island_perimeter(grid):
     perimeter = 0
     row = 0
     column = 0
-    height = len(grid[row]) - 1
-    width = len(grid) - 1
+    height = len(grid) - 1
+    width = len(grid[row]) - 1
 
-    while row < width:
+    while row < height:
         column = 0
-        while column < height:
+        while column < width:
             if grid[row][column] == 1:
                 # left
                 if row == 0 or grid[row][column - 1] == 0:
