@@ -24,17 +24,17 @@ function getData (url) {
   });
 }
 
+async function printCharacters (url) {
+  const data = await getData(url);
+  for (const api of data.characters) {
+    const character = await getData(api);
+    console.log(character.name);
+  }
+}
+
 getData(endpoint + userInput[2])
   .then(data => {
-    for (const api of data.characters) {
-      getData(api)
-        .then(character => {
-          console.log(character.name);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
+    printCharacters(data);
   })
   .catch(error => {
     console.error(error);
