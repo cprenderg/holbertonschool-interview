@@ -34,8 +34,3 @@ def island_perimeter(grid):
             column += 1
         row += 1
     return perimeter
-
-
-grid = [[0, 0, 0, 0, 0, 0],[0, 1, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0]]
-
-print(island_perimeter(grid))
