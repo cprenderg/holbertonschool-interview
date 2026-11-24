@@ -12,8 +12,8 @@ def island_perimeter(grid):
     perimeter = 0
     row = 0
     column = 0
-    width = len(grid[row]) - 1
-    height = len(grid) - 1
+    height = len(grid[row]) - 1
+    width = len(grid) - 1
 
     while row < width:
         column = 0
@@ -34,3 +34,8 @@ def island_perimeter(grid):
             column += 1
         row += 1
     return perimeter
+
+
+grid = [[0, 0, 0, 0, 0, 0],[0, 1, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0]]
+
+print(island_perimeter(grid))
